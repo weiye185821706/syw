@@ -1,13 +1,13 @@
 package com.syw.baobao.demo.controller;
 
 import com.syw.baobao.demo.service.AuthService;
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/say")
+@RequestMapping("/user")
 @Api(value = "SayController|一个用来测试swagger注解的控制器")
 public class AuthController {
     @Autowired
@@ -18,5 +18,13 @@ public class AuthController {
     public String Login(@RequestParam(value = "userName") String userName,
                         @RequestParam(value = "passWord") String passWord) {
         return authService.Login(userName, passWord);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getName", method = RequestMethod.GET)
+    @ApiOperation(value="输入用户名返回用户名")
+    public String getUserName(@RequestParam(value = "userName") String userName
+                        ) {
+        return userName;
     }
 }

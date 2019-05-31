@@ -1,5 +1,6 @@
 package com.syw.baobao.demo.service;
 
+import com.syw.baobao.demo.util.TokenUtil;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,11 @@ public class AuthService {
      * @return
      */
     public String Login(String userName, String passWord) {
-        return "登录成功";
+        String name = "123456";
+        String pwd = "123456";
+        if (name.equals(userName) && pwd.equals(passWord)) {
+            return TokenUtil.sign(userName, passWord);
+        }
+        return "密码错误";
     }
 }
