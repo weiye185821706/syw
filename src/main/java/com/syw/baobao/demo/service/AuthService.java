@@ -26,7 +26,7 @@ public class AuthService {
         if (baoAuth == null) {
             return "账号或者密码错误";
         } else {
-            return TokenUtil.sign(baoAuth.getUserid(), baoAuth.getPasswork());
+            return TokenUtil.sign(baoAuth.getUserid(), baoAuth.getPasswork(), baoAuth.getName(), baoAuth.getUuid());
         }
     }
 }

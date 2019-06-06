@@ -18,7 +18,7 @@ public class TokenUtil {
      * @param password 密码
      * @return
      */
-    public static String sign(String name, String password) {
+    public static String sign(String name, String password, String userName, String uuid) {
         try {
             // 设置过期日期
             Date date = new Date(System.currentTimeMillis() + CommonContants.EXPIRE_TIME);
@@ -28,8 +28,11 @@ public class TokenUtil {
             Map<String, Object> heaer = new HashMap<>();
             heaer.put("Type", "Jwt");
             heaer.put("alg", "HS256");
+
             // 返回token字符串
             return JWT.create()
+                    .withKeyId(uuid)
+                    .withAudience(userName)
                     .withHeader(heaer).withClaim("userName", name).withClaim("pwd", password)
                     .withExpiresAt(date).sign(algorithm);
         } catch (Exception e) {

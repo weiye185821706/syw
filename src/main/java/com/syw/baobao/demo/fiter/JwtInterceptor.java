@@ -19,7 +19,7 @@ public class JwtInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        System.out.println("认证失败");
-        return false;
+        // todo 先不做校验
+        return true;
     }
 }
