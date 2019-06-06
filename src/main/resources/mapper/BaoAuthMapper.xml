@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syw.baobao.demo.dao.BaoAuthMapper">
+  <resultMap id="BaseResultMap" type="com.syw.baobao.demo.entiy.BaoAuth">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="passwork" jdbcType="CHAR" property="passwork" />
+    <result column="userId" jdbcType="CHAR" property="userid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bao_auth
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.syw.baobao.demo.entiy.BaoAuth">
+    insert into bao_auth (uuid, `name`, passwork,
+      userId)
+    values (#{uuid,jdbcType=VARCHAR}, #{name,jdbcType=CHAR}, #{passwork,jdbcType=CHAR}, 
+      #{userid,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.syw.baobao.demo.entiy.BaoAuth">
+    update bao_auth
+    set `name` = #{name,jdbcType=CHAR},
+      passwork = #{passwork,jdbcType=CHAR},
+      userId = #{userid,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="com.syw.baobao.demo.entiy.BaoAuth" resultMap="BaseResultMap">
+    select uuid, `name`, passwork, userId
+    from bao_auth
+    <where>
+      <if test="name != null and name != ''">and `name` = #{name}</if>
+      <if test="passwork != null and passwork != ''">and passwork = #{passwork}</if>
+      <if test="userid != null and userid != ''">and userid = #{userid}</if>
+    </where>
+</select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select uuid, `name`, passwork, userId
+    from bao_auth
+  </select>
+</mapper>
