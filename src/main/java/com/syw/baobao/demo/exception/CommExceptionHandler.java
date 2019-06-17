@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 @ResponseBody
 public class CommExceptionHandler {
+
     @ExceptionHandler
     public Result messageErrorException(MyException e) {
-       return Result.error(e.getCode(), e.getMessage());
+        return Result.error(e.getCode(), e.getMessage());
+    }
+
+    @ExceptionHandler
+    public Result systemErrorException(SystemException e) {
+        return Result.error(e.getCode(), e.getMessage());
     }
 }
