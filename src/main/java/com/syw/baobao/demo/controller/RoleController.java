@@ -1,7 +1,9 @@
 package com.syw.baobao.demo.controller;
 
+import com.syw.baobao.demo.util.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -9,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/role")
 @Api(value = "角色相关")
 public class RoleController {
+    @Autowired
+    private RedisUtil redisUtil;
+
+
     @ApiOperation(value = "新增角色操作")
     @RequestMapping(value = "/addRole", method = RequestMethod.POST)
     @ResponseBody
@@ -37,6 +43,6 @@ public class RoleController {
     @ResponseBody
     public String queryList(@RequestParam(value = "page") int page,
                              @RequestParam(value = "pageSize")int pageSize) {
-        return "asdfasdfasdfsadfsadfsdfasf";
+        return redisUtil.get("token").toString();
     }
 }

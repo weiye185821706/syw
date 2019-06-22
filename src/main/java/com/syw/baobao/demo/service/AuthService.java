@@ -3,7 +3,7 @@ package com.syw.baobao.demo.service;
 import com.syw.baobao.demo.dao.BaoAuthMapper;
 import com.syw.baobao.demo.entiy.BaoAuth;
 import com.syw.baobao.demo.exception.MyException;
-import com.syw.baobao.demo.exception.SystemException;
+import com.syw.baobao.demo.util.RedisUtil;
 import com.syw.baobao.demo.util.TokenUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,8 @@ public class AuthService {
     private static Logger logger = LogManager.getLogger("fileLogger");
     @Autowired
     private BaoAuthMapper baoAuthMapper;
-
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * 登录接口
      *
